@@ -23,4 +23,4 @@ jobs:
 
       - name: Run Notebook
         run: |
-          papermill https://github.com/ErzAP-maker/erza_ap-public/blob/5bb3c57c385f91ab3a0d4a420b14b772a7359490/.github/workflows/run-colab.yml
+          papermill https://github.com/ErzAP-maker/erza_ap-public/.github/workflows/run-colab.yml
