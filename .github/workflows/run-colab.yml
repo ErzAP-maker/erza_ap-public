@@ -1,10 +1,10 @@
 name: Run Google Colab Notebook
 
 on:
+  workflow_dispatch:  # Memungkinkan menjalankan workflow secara manual
   schedule:
     # Atur jadwal cron job, misalnya setiap hari pukul 00:00 UTC
     - cron: '0 3 * * *'
-workflow_dispatch:  # Memungkinkan menjalankan workflow secara manual
 
 jobs:
   run_colab:
