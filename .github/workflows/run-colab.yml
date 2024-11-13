@@ -1,19 +1,26 @@
-name: Run Google Colab Notebook
+name: Run Colab Notebook
 
 on:
   workflow_dispatch:  # Memungkinkan menjalankan workflow secara manual
   schedule:
-    # Atur jadwal cron job, misalnya setiap hari pukul 00:00 UTC
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *'  # Menjalankan setiap hari pada pukul 9 AM (UTC)
 
 jobs:
   run_colab:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run Google Colab Notebook
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install dependencies
         run: |
-          pip install -q colab-cli
-          colab-cli run "https://colab.research.google.com/github/ErzAP-maker/erza_ap-public/blob/main/notebook.ipynb" --auth-token="YOUR_COLAB_AUTH_TOKEN"
+          pip install papermill
+
+      - name: Run Notebook
+        run: |
+          papermill https://raw.githubusercontent.com/{username}/{repo_name}/{branch}/{path_to_notebook}.ipynb output.ipynb
