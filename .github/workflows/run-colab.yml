@@ -1,0 +1,18 @@
+name: Run Google Colab Notebook
+
+on:
+  schedule:
+    # Atur jadwal cron job, misalnya setiap hari pukul 00:00 UTC
+    - cron: '0 0 * * *'
+
+jobs:
+  run_colab:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+
+      - name: Run Google Colab Notebook
+        run: |
+          pip install -q colab-cli
+          colab-cli run "https://colab.research.google.com/github/ErzAP-maker/erza_ap-public/blob/main/notebook.ipynb" --auth-token="YOUR_COLAB_AUTH_TOKEN"
